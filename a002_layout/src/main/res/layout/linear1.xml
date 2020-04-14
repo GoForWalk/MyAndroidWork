@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:background="#40C4FF"
+        android:text="첫번째 Textview"
+        android:textColor="#01579B"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="69dp"
+        android:text="TextView" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="버튼 A"
+        android:layout_margin="20dp"
+
+        />
+        <!--margin : 외부 여백 -->
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:text="TextView"
+        android:textColor="#BF360C"
+        android:padding="10dp"/>
+    <!-- padding : 내부 여백  -->
+</LinearLayout>
