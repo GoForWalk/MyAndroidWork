@@ -128,15 +128,11 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
                     numList.addFirst(prevNum / nextNum);
                 }
             }
-            calculResult.setText(String.format("%f", numList.poll()));
-        }catch (NumberFormatException ex){
-            calculResult.setText("수식이 틀렸습니다.");
+                calculResult.setText(String.format("%f", numList.poll()));
+            }catch (NumberFormatException ex){
+                calculResult.setText("수식이 틀렸습니다.");
 
         }
-
-
-
-
 
         }
     });
