@@ -91,31 +91,32 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
         @Override
         public void onClick(View v) {
 
+        try {
             LinkedList<Double> numList = new LinkedList<Double>(); //숫자관련
-            LinkedList<Character> opList = new LinkedList<Character>(); //연산자 관련
+            LinkedList<Character> chList = new LinkedList<Character>(); //연산자 관련
 
             String calculation = et.getText().toString().
-                    replace("X","*").replace("÷","/").trim();
+                    replace("X", "*").replace("÷", "/").trim();
 
             String num = "";
 
-            for(int i = 0; i < calculation.length(); i++) {
+            for (int i = 0; i < calculation.length(); i++) {
                 char ch = calculation.charAt(i);
 
-                if(ch == '+' || ch =='-' || ch == '*' || ch == '/') {
+                if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
                     numList.add(Double.parseDouble(num)); //숫자로 바꿔서 숫자배열에 추가
-                    opList.add(ch); //연산자를 연산자배열에 추가
+                    chList.add(ch); //연산자를 연산자배열에 추가
                     num = ""; //임시로 저장된 숫자를 비워준다
                     continue; //제일 가까운 명령문으로 이동
                 }
-                num += ch; 
+                num += ch;
             }
             numList.add(Double.parseDouble(num)); //마지막 숫자
 
-            while(!opList.isEmpty()) { //연산자배열이 빌 때까지
+            while (!chList.isEmpty()) { //연산자배열이 빌 때까지
                 double prevNum = numList.poll(); //poll : 앞부터 완전히 뺀다
                 double nextNum = numList.poll();
-                char op = opList.poll();
+                char op = chList.poll();
 
                 if (op == '+') {
                     numList.addFirst(prevNum + nextNum); //addFirst 배열 제일 앞에 넣는다
@@ -127,7 +128,16 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
                     numList.addFirst(prevNum / nextNum);
                 }
             }
-        calculResult.setText(String.format("%f" ,numList.poll()));
+            calculResult.setText(String.format("%f", numList.poll()));
+        }catch (NumberFormatException ex){
+            calculResult.setText("수식이 틀렸습니다.");
+
+        }
+
+
+
+
+
         }
     });
     } // end onCreate()
