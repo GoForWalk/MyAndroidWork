@@ -116,15 +116,15 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
             while (!chList.isEmpty()) { //연산자배열이 빌 때까지
                 double prevNum = numList.poll(); //poll : 앞부터 완전히 뺀다
                 double nextNum = numList.poll();
-                char op = chList.poll();
+                char sign = chList.poll();
 
-                if (op == '+') {
+                if (sign == '+') {
                     numList.addFirst(prevNum + nextNum); //addFirst 배열 제일 앞에 넣는다
-                } else if (op == '-') {
+                } else if (sign == '-') {
                     numList.addFirst(prevNum - nextNum);
-                } else if (op == '*') {
+                } else if (sign == '*') {
                     numList.addFirst(prevNum * nextNum);
-                } else if (op == '/') {
+                } else if (sign == '/') {
                     numList.addFirst(prevNum / nextNum);
                 }
             }
