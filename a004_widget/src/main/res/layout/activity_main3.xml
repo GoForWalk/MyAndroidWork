@@ -14,5 +14,47 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         />
 
+    <CheckBox
+        android:id="@+id/cb1"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="딸기"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+    <CheckBox
+        android:id="@+id/cb2"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="포도" />
+
+    <CheckBox
+        android:id="@+id/cb3"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="키위" />
+
+    <CheckBox
+        android:id="@+id/cb4"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="바나나" />
+
+    <Button
+        android:id="@+id/btnComplete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="선택완료" />
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:text="선택결과" />
 
 </LinearLayout>
