@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class Main3Activity extends AppCompatActivity {
 
@@ -18,6 +20,11 @@ public class Main3Activity extends AppCompatActivity {
 
     Handler handler = new Handler();
 
+    boolean isTracking;
+
+    ToggleButton toggleButton1;
+    boolean isStop;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +32,8 @@ public class Main3Activity extends AppCompatActivity {
 
         tvResult = findViewById(R.id.tvResult);
         seekBar = findViewById(R.id.seekBar);
+
+
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -40,47 +49,66 @@ public class Main3Activity extends AppCompatActivity {
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
                 Toast.makeText(getApplicationContext(), "트래킹 시작" ,Toast.LENGTH_SHORT).show();
+                isTracking = true;
             }
 
             // tracking 끝날 때 콜백
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 Toast.makeText(getApplicationContext(), "트래킹 종료" ,Toast.LENGTH_SHORT).show();
+                isTracking = false;
             }
         });
 
-        // 앱 시작시 Thread . . SeekBar 증가 시키기
-        new Thread(new Runnable() {
+        toggleButton1 = findViewById(R.id.toggleButton2);
+
+        toggleButton1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    isStop = true;
+                } else {
+                    isStop = false;
+                }
+            }
+        });
+
+
+        Thread t = new Thread(new Runnable() {
             @Override
             public void run() {
-
                 int max = seekBar.getMax();
-                for(;;){
-                    value = seekBar.getProgress() + add;
+                for (; ; ) {
 
-                    if(value > max || value < 0){
-                        add = -add;
-                    }
+                    if (isStop) {
 
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            seekBar.setProgress(value);
+                        if (!isTracking) {// 트래킹 중이 아닐 때만 SeekBar 이동
+                            value = seekBar.getProgress() + add;
+
+                            if (value > max || value < 0) {
+                                add = -add;
+                            }
+
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    seekBar.setProgress(value);
+                                }
+                            });
+
+
+                            try {
+                                Thread.sleep(100);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    });
 
-
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } // end for
-
-
+                    } // end for
+                }
             }
-        }).start();
-
+        });
+        t.start();
 
     } // end onCreate()
 
