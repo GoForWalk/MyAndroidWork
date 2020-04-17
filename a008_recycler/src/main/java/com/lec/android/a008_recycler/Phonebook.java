@@ -1,7 +1,9 @@
 package com.lec.android.a008_recycler;
 
+import java.io.Serializable;
+
 // 전화번호부 데이터를 담을 클래스
-public class Phonebook {
+public class Phonebook implements Serializable {
     int photo;// 사진
     String name;// 이름
     String phone;// 전화번호
