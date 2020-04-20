@@ -1,5 +1,6 @@
 package com.lec.android.a008_practice;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ViewHolder>{
+public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ViewHolder> implements Serializable {
 
     List<Model> items = new ArrayList<Model>();
 
@@ -65,6 +67,23 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ViewHolder>{
                 }
             });
 
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    int position = getAdapterPosition();
+
+                    Intent intent = new Intent(v.getContext(), ModelDetail.class);
+
+                    intent.putExtra("ad", adapter.getItem(position));
+
+                    v.getContext().startActivity(intent);
+
+                    // TODO 인텐트 보내기
+
+                    return false;
+                }
+            });
+
 
         }// end 생성자
 
@@ -80,11 +99,11 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ViewHolder>{
 
     public void addItem(Model item){items.add(item);}
     public void addItem(int position, Model item){items.add(position,item);}
-    public Model getItem(int position){ return items.get(position);} // 안쓸듯 ㅋㅋ
+    public Model getItem(int position){ return items.get(position);}
     public void removeItem(int position){items.remove(position);}
 
-    // 안쓸듯 ㅋㅋ
-//    public void setItems(ArrayList<Model> items){this.items = items;}
+
+    public void setItems(ArrayList<Model> items){this.items = items;}
 //    public void setItems(int position, Model items){ items.set(position,item);}
 
 

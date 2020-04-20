@@ -1,14 +1,25 @@
 package com.lec.android.a008_practice;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Model implements Serializable {
-    int uid;
+
     String name;
     String age;
     String address;
+    Date birthday;
+    String PhoneNum;
 
     public Model() {
+    }
+
+    public Model(String name, String age, String address, Date birthday, String phoneNum) {
+        this.name = name;
+        this.age = age;
+        this.address = address;
+        this.birthday = birthday;
+        this.PhoneNum = phoneNum;
     }
 
     public Model(String name, String age, String address) {
@@ -39,5 +50,21 @@ public class Model implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getPhoneNum() {
+        return PhoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        PhoneNum = phoneNum;
     }
 }

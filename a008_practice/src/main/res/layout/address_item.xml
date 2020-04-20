@@ -36,11 +36,11 @@
                 android:id="@+id/tvAge"
                 android:layout_width="147dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="184dp"
                 android:layout_marginTop="16dp"
                 android:text="나이"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+                app:layout_constraintStart_toEndOf="@+id/tvName"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
