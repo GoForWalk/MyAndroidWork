@@ -3,9 +3,11 @@ package com.lec.android.a014_dialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // 액티비티 레이아웃 파일
+
+        tvResult = findViewById(R.id.tvResult);
 
         // Dialog 클래스로 다이얼로그 객체 생성 및 세팅
         dlg1 = new Dialog(this); // 다이얼로그 객체 생성
@@ -47,11 +51,42 @@ public class MainActivity extends AppCompatActivity {
                                                 // 종료할것인지 여부, true : 종료됨, false : 종료안댐.
 
 
+        //#2
+        dlg2 = new Dialog(this);
+        dlg2.setContentView(R.layout.dialog_layout12);
+        dlg2.setOwnerActivity(MainActivity.this);
+        dlg2.setCanceledOnTouchOutside(false);
+
+        final EditText etName = dlg2.findViewById(R.id.etName);
+        Button btnOk = dlg2.findViewById(R.id.btnOk);
+        Button btnCancel = dlg2.findViewById(R.id.btnCancel);
+
+        btnOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String str = etName.getText().toString();
+                tvResult.setText(str);
+                dlg2.dismiss(); // 다이얼로그 객체 제거
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dlg2.dismiss();
+            }
+        });
+
+        dlg2.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                etName.setText("");
+            }
+        });
 
 
 
-
-    }
+    } // end onCreate()
 
 
     public void showDialog1(View v){
@@ -60,6 +95,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showDialog2(View v){
-        // TODO
+       dlg2.show();
     }
 }
