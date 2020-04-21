@@ -39,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
         tvBackValue1 = findViewById(R.id.tvBackValue1);
         tvBackValue2 = findViewById(R.id.tvBackValue2);
 
+        // Thread
         BackThread thread1 = new BackThread();
         thread1.setDaemon(true); // 메인스레드와 종료 동기화.
         thread1.start();// 작업스레드 시작
 
+
+        // Runnable
         BackRunnable runnable = new BackRunnable();
         Thread thread2 = new Thread(runnable);
         thread2.setDaemon(true);
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     // 1. Thread 를 상속받은 작업스레드
     class BackThread extends Thread{
         @Override
-        public  void run(){
+        public void run(){
             while (true){
                 backValue1++; // 작업 쓰레드 값 증가
 
@@ -81,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 tvBackValue1.setText("" + backValue1);
                  // CalledFromWrongThreadException: Only the original thread that created a view hierarchy can touch its views.
                  // 작업 쓰레드에서는 메인쓰레드를 건드릴 수 없다!!
-                    // Handler 장착하면 쌉가능
+                // Handler 장착하면 쌉가능
             }
         }
     }
