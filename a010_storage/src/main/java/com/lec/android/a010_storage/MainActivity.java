@@ -36,6 +36,10 @@ import java.io.StringReader;
  *      - openFileOutput() 를 사용하여 저장  (  FileOutputStream 객체 리턴함 )
  */
 
+// Device File Explorer 에서 생성된 파일 확인 가능
+    // pixel2 폰의 경우
+    // /data/data/com.lec.android.a010_storage/files/myfile.txt
+
 public class MainActivity extends AppCompatActivity {
 
     EditText et;
