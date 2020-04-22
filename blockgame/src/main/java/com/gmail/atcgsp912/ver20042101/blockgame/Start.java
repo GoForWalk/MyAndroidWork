@@ -47,6 +47,10 @@ public class Start extends AppCompatActivity implements View.OnClickListener{
             // 시간은 1초마다 다시 표시 (업데이트)
             // Handler 사용하여 화면 UI 업데이트
 
+            if(point < 0){
+
+            }
+
 
             handler.postDelayed(new Runnable() {
                 @Override
@@ -208,7 +212,6 @@ public class Start extends AppCompatActivity implements View.OnClickListener{
             // 점수 깍기
             point--;
             tvPoint.setText("점수 : " + point);
-
 
         }
 
