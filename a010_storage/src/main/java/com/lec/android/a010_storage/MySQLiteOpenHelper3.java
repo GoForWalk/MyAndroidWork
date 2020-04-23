@@ -7,12 +7,11 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+
+
 // SQLiteOpenHelper
 // 안드로이드에서 SQLite3 데이터베이스를 좀더 쉽게 사용할 수 있도록 제공되는 클래스
-
 public class MySQLiteOpenHelper3 extends SQLiteOpenHelper {
-
-
 
     // 생성자 overriding
     public MySQLiteOpenHelper3(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -47,10 +46,6 @@ public class MySQLiteOpenHelper3 extends SQLiteOpenHelper {
         String sql = "DROP TABLE mytable"; // 기존 테이블 삭제
         db.execSQL(sql);
         onCreate(db); // 다시 테이블 생성
-
-
-
-
 
     }
 }

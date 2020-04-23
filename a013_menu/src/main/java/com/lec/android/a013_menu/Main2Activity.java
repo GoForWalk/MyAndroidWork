@@ -42,7 +42,6 @@ public class Main2Activity extends AppCompatActivity {
 
     // onCreateContextMenu()
     // 컨텍스트 메뉴가 생성될 때, 한번만 호출되는 콜백 메서드
-
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -51,7 +50,6 @@ public class Main2Activity extends AppCompatActivity {
         // 각각의 뷰 (위젯) (View v) 마다 다르게 메뉴 작동하도록 설정 가능
         switch (v.getId()){
             case R.id.tvCtxMenu:
-
                 menu.setHeaderTitle("색상을 선택하세요");
                 menu.add(0,1, 100, "빨강");
                 menu.add(0,2, 100, "녹색");
@@ -71,8 +69,6 @@ public class Main2Activity extends AppCompatActivity {
 
     // onContextItemSelected(MenuItem)
     // ContextMenu 의 메뉴아이템 항목을 선택(클릭) 했을 때 호출
-
-
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         Log.d("myapp", "onContextItemSelected()");

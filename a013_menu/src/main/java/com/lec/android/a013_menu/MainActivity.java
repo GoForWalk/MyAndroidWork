@@ -35,13 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
         ll = findViewById(R.id.ll);
 
-
     } // end onCreate()
+
 
     // onCreateOptionsMenu()
     // '옵션메뉴'버튼이 '처음' 눌러졌을 때 실행되는 메소드
     // 메뉴버튼을 눌렀을 때 보여줄 menu 에 대해서 정의
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main1, menu); // XML 파일로 부터 Menu 객체를 만든다.
@@ -60,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
     // onPrepareOptionsMenu()
     // '옵션메뉴'가 화면에 보여질때마다 호출되는 메소드
-
-
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         Log.d("myapp", "onPrepareOptionsMenu - 옵션메뉴가 화면에 보일때 마다 호출됨");
@@ -88,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Log.d("myapp", "onOptionsItemSelected - 메뉴 항복을 클릭했을때 호출됨");
+        Log.d("myapp", "onOptionsItemSelected - 메뉴 항목을 클릭했을때 호출됨");
 
         showInfo(item);
 

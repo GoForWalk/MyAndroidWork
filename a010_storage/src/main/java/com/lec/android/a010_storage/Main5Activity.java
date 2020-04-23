@@ -31,7 +31,6 @@ public class Main5Activity extends AppCompatActivity {
         etInput.setText(str);
         Log.d("myapp", str + " - " + xx + " - " + yy);
 
-
     } // end onCreate()
 
     @Override

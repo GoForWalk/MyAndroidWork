@@ -130,8 +130,6 @@ public class Main2Activity extends AppCompatActivity{
     }// end onCreate()
 
     // 권한 흭득 결과 받으면 실행되는 콜백
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){

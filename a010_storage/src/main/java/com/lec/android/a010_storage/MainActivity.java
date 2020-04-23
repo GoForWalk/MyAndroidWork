@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String data = et.getText().toString();
 
-
                 // openFileOutput 을 사용하여 OutputStream 객체 뽑아내기
                 try {
                     FileOutputStream os = openFileOutput("myfile.txt", MODE_APPEND);
@@ -79,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
 
                 // write : 기존의 파일이 있으면 싹 지우고 다시 작성
                 // append : 기존 파일 뒤에 추가
-
 
             }
         });

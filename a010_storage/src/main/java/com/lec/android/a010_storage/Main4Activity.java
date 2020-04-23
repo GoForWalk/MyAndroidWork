@@ -47,6 +47,7 @@ public class Main4Activity extends AppCompatActivity {
         btnSelect = findViewById(R.id.btnSelect);
         tvResult = findViewById(R.id.tvResult);
 
+        // MySQLiteOpenHelper4 초기화
         helper4 = new MySQLiteOpenHelper4(
                 this,
                 dbName,
@@ -55,7 +56,7 @@ public class Main4Activity extends AppCompatActivity {
         );
 
         try {
-            db = helper4.getReadableDatabase();
+            db = helper4.getReadableDatabase(); // 읽기만 하는 데이터베이스 (헬퍼 연결)
         } catch (SQLException e){
             e.printStackTrace();
             Log.e("myapp", "데이터 베이스를 열수 없습니다."); // Logcat 의 error 에 표시됨.
@@ -68,6 +69,7 @@ public class Main4Activity extends AppCompatActivity {
                 String age = etAge.getText().toString();
                 String address = etAddress.getText().toString();
 
+                // 이름 항목이 empty 이면, 재입력 요구
                 if("".equals(name)){
                     tvResult.setText("INSERT 실패: 필수 항목을 입력하세요");
                     return;
@@ -96,7 +98,6 @@ public class Main4Activity extends AppCompatActivity {
                     tvResult.setText("UPDATE 실패: 필수 항목을 입력하세요");
                     return;
                 }
-
 
                 int a = 0;
                 try {
@@ -142,7 +143,7 @@ public class Main4Activity extends AppCompatActivity {
 
         ContentValues values = new ContentValues(); // name - value 쌍으로 저장하는 객체
 
-        // 키, 값의 쌍으로 데이터 입력
+        // 키, 값의 쌍으로 데이터 입력 values.put("name", value(값));
         values.put("name", name);
         values.put("age", age);
         values.put("address", address);
@@ -188,6 +189,7 @@ public class Main4Activity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
 
     } // end select()
+
 
     void update(String name, int age, String address){
         ContentValues values = new ContentValues();

@@ -25,15 +25,15 @@ public class Main3Activity extends AppCompatActivity {
 
     MySQLiteOpenHelper3 helper;
     String dbName = "st_file.db"; // 파일의 평태로 DB 가 저장된다.
-    int dbVersion = 2; // 데이터베이스 버젼
+    int dbVersion = 1; // 데이터베이스 버젼
     SQLiteDatabase db;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
+        // MySQLiteOpenHelper3 초기화
         helper = new MySQLiteOpenHelper3(
           this, // 현재화면 제어권자
           dbName, // DB 이름
@@ -73,7 +73,6 @@ public class Main3Activity extends AppCompatActivity {
          db.execSQL("UPDATE mytable SET name = '홍성용' WHERE id = 5");
          Log.d("myapp" , "UPDATE 완료");
     }
-
 
     void select(){
         Cursor c = db.rawQuery("SELECT * FROM mytable", null);
