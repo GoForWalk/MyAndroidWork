@@ -17,23 +17,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main2Activity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Main2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- 앱 간의 파일 공유를 위한 Content Provider -->
+        </activity>
+        <activity android:name=".MainActivity">
+
+        </activity>
+        <!-- 앱 간의 파일 공유를 위한 Content Provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="org.techtown.capture.intent.fileprovider"
-            android:exported="true"
+            android:exported="false"
             android:grantUriPermissions="true">
 
             <!-- 파일 공유 경로 지정 -->
             <meta-data
-                android:name="android.support.File_PROVIDER_PATHS"
+                android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/external" />
         </provider>
     </application>
