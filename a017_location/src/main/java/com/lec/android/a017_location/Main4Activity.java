@@ -3,6 +3,18 @@ package com.lec.android.a017_location;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 /** 구글맵 v2.0 서비스 사용하기
  *  1. Play Service 라이브러리 추가
@@ -16,9 +28,76 @@ import android.os.Bundle;
 
 public class Main4Activity extends AppCompatActivity {
 
+    // GoogleMap 2.0
+    GoogleMap map;
+    SupportMapFragment supportMapFragment;
+    MarkerOptions myLocationMarker; // 마커 (오버레이 객체 - 지도위에 나타나는 객체들)
+
+    Button btnMap;
+    Button btnMarker;
+    EditText etLatitude;
+    EditText etLongitude;
+    EditText etMarker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
+
+        btnMap = findViewById(R.id.btnMap);
+        btnMarker = findViewById(R.id.btnMarker);
+        etLatitude = findViewById(R.id.etLatitude);
+        etLongitude = findViewById(R.id.etLongitude);
+        etMarker = findViewById(R.id.etMarker);
+
+        supportMapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
+        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) { // 지도가 준비되면 호출되는 콜백
+
+                Log.d("myapp", "지도 준비됨");
+                map = googleMap;
+            }
+        });
+
+        MapsInitializer.initialize(this);
+
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startLocationService();
+            }
+        });
+
+        btnMarker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                double lat = Double.parseDouble(etLatitude.getText().toString());
+                double lng = Double.parseDouble(etLongitude.getText().toString());
+
+                LatLng curPoint = new LatLng(lat, lng);
+
+                MarkerOptions markerOptions = new MarkerOptions()
+                        .position(curPoint)
+                        .title(etMarker.getText().toString().trim() + "\n")
+                        .snippet("*" + String.format("%3f %3f", lat, lng));
+                map.addMarker(markerOptions);
+            }
+        });
+
+    }// end onCreate()
+
+    public void startLocationService(){
+        double lat = Double.parseDouble(etLatitude.getText().toString());
+        double lng = Double.parseDouble(etLongitude.getText().toString());
+
+        LatLng curPoint = new LatLng(lat, lng);
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
+
+
     }
-}
+
+
+
+
+}// end Activity
