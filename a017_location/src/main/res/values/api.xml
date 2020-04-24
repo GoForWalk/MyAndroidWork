@@ -2,7 +2,9 @@
 <resources>
 
     <!-- GitHub 등에 올릴때 주의! .gitignore -->
-    <string name="api_key"></string>
+    <string name="api_key">
+
+    </string>
 
 
 </resources>
